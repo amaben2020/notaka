@@ -10,7 +10,6 @@ export default {
     };
   },
   stacks(app) {
-    app.stack(API);
-    app.stack(StorageStack);
+    app.stack(StorageStack).stack(API);
   },
 } satisfies SSTConfig;

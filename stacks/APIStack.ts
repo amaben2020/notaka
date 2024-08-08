@@ -1,12 +1,16 @@
-import { StackContext, Api, EventBus } from 'sst/constructs';
+import { StackContext, Api, EventBus, use } from 'sst/constructs';
+import { StorageStack } from './StorageStack';
 
 export function API({ stack }: StackContext) {
+  const { table } = use(StorageStack);
   const api = new Api(stack, 'api', {
     defaults: {
-      function: {},
+      function: {
+        bind: [table],
+      },
     },
     routes: {
-      'GET /': 'packages/functions/src/lambda.handler',
+      'POST /': 'packages/functions/src/create.main',
     },
   });
 
