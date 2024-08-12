@@ -10,6 +10,7 @@ export const main = handler(async (event) => {
   if (event.body != null) {
     data = JSON.parse(event.body);
   }
+
   const params = {
     TableName: Table.Notes.tableName,
     Item: {
