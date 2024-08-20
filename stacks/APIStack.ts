@@ -13,6 +13,7 @@ export function API({ stack }: StackContext) {
       'POST /': 'packages/functions/src/create.main',
       'GET /notes/{userId}/{id}': 'packages/functions/src/get.main',
       'GET /notes': 'packages/functions/src/list.main',
+      'PUT /notes/{id}': 'packages/functions/src/update.main',
     },
   });
 
