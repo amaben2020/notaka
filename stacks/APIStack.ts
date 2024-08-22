@@ -1,10 +1,9 @@
 import { StackContext, Api, EventBus, use } from 'sst/constructs';
 import { StorageStack } from './StorageStack';
-import { AuthStack } from './AuthStack';
 
 export function API({ stack }: StackContext) {
   const { table } = use(StorageStack);
-  // const { auth } = use(AuthStack);
+
   const api = new Api(stack, 'api', {
     defaults: {
       function: {
@@ -13,7 +12,7 @@ export function API({ stack }: StackContext) {
       authorizer: 'iam',
     },
     routes: {
-      'POST /': 'packages/functions/src/create.main',
+      'POST /notes': 'packages/functions/src/create.main',
       'GET /notes/{userId}/{id}': 'packages/functions/src/get.main',
       'GET /notes': 'packages/functions/src/list.main',
       'PUT /notes/{id}': 'packages/functions/src/update.main',
