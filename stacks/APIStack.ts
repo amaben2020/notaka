@@ -1,13 +1,16 @@
 import { StackContext, Api, EventBus, use } from 'sst/constructs';
 import { StorageStack } from './StorageStack';
+import { AuthStack } from './AuthStack';
 
 export function API({ stack }: StackContext) {
   const { table } = use(StorageStack);
+  // const { auth } = use(AuthStack);
   const api = new Api(stack, 'api', {
     defaults: {
       function: {
         bind: [table],
       },
+      authorizer: 'iam',
     },
     routes: {
       'POST /': 'packages/functions/src/create.main',
@@ -21,4 +24,8 @@ export function API({ stack }: StackContext) {
   stack.addOutputs({
     ApiEndpoint: api.url,
   });
+
+  return {
+    api,
+  };
 }
