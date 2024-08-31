@@ -2,6 +2,9 @@ import './App.css';
 import { Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './containers/Login';
+
 function App() {
   return (
     <div className="App container py-3">
@@ -21,7 +24,10 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Routes />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        {/* Add other routes here */}
+      </Routes>
     </div>
   );
 }
