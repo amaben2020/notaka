@@ -4,9 +4,16 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import './Login.css';
 import { Auth } from 'aws-amplify';
+import { useAppContext } from '../lib/contextLib';
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const nav = useNavigate();
+
+  const { userHasAuthenticated } = useAppContext();
+
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
@@ -14,7 +21,8 @@ export default function Login() {
     event.preventDefault();
     try {
       await Auth.signIn(email, password);
-      alert('Logged in');
+      userHasAuthenticated(true);
+      nav('/');
     } catch (error) {
       // Prints the full error
       console.error(error);
