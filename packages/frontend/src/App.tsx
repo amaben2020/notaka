@@ -7,6 +7,7 @@ import Login from './containers/Login';
 import { useEffect, useState } from 'react';
 import { AppContext, AppContextType } from './lib/contextLib';
 import { Auth } from 'aws-amplify';
+import Signup from './containers/Signup';
 
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -66,6 +67,7 @@ function App() {
         >
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </AppContext.Provider>
       </div>
