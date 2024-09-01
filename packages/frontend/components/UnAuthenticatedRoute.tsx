@@ -1,4 +1,3 @@
-import React from 'react';
 import { cloneElement, ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppContext } from '../src/lib/contextLib';

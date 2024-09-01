@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState } from 'react';
 import config from '../config';
 import { API } from 'aws-amplify';

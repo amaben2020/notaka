@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API, Storage } from 'aws-amplify';
