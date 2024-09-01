@@ -12,6 +12,8 @@ import NewNote from './containers/NewNote';
 import Home from './containers/Home';
 import Notes from './containers/Note';
 import Settings from './containers/Settings';
+import UnauthenticatedRoute from '../components/UnAuthenticatedRoute';
+import AuthenticatedRoute from '../components/AuthenticatedRoute';
 
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -76,12 +78,54 @@ function App() {
           value={{ isAuthenticated, userHasAuthenticated } as AppContextType}
         >
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/notes/new" element={<NewNote />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/notes/:id" element={<Notes />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route
+              path="/login"
+              element={
+                <UnauthenticatedRoute>
+                  <Login />
+                </UnauthenticatedRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <UnauthenticatedRoute>
+                  <Signup />
+                </UnauthenticatedRoute>
+              }
+            />
+            <Route
+              path="/notes/new"
+              element={
+                <AuthenticatedRoute>
+                  <NewNote />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <AuthenticatedRoute>
+                  <Home />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/notes/:id"
+              element={
+                <AuthenticatedRoute>
+                  <Notes />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <AuthenticatedRoute>
+                  <Settings />
+                </AuthenticatedRoute>
+              }
+            />
           </Routes>
         </AppContext.Provider>
       </div>
