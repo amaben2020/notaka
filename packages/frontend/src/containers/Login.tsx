@@ -23,6 +23,7 @@ export default function Login() {
   function validateForm() {
     return fields.email.length > 0 && fields.password.length > 0;
   }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -41,6 +42,7 @@ export default function Login() {
       }
     }
   }
+
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
