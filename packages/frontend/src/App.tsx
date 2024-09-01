@@ -9,6 +9,9 @@ import { AppContext, AppContextType } from './lib/contextLib';
 import { Auth } from 'aws-amplify';
 import Signup from './containers/Signup';
 import NewNote from './containers/NewNote';
+import Home from './containers/Home';
+import Notes from './containers/Note';
+import Settings from './containers/Settings';
 
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -46,6 +49,12 @@ function App() {
             <Navbar.Brand className="fw-bold text-muted">Scratch</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
+          {/* <>
+            <LinkContainer to="/settings">
+              <Nav.Link>Settings</Nav.Link>
+            </LinkContainer>
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+          </> */}
           <Navbar.Collapse className="justify-content-end">
             <Nav activeKey={window.location.pathname}>
               {isAuthenticated ? (
@@ -70,6 +79,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/notes/new" element={<NewNote />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/notes/:id" element={<Notes />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </AppContext.Provider>
       </div>
